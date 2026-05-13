@@ -177,6 +177,72 @@ h1 {
   clip-path: polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%);
 }
 
+.popup-frames {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
+}
+
+.photo-frame {
+  position: absolute;
+  width: clamp(96px, 16vw, 150px);
+  aspect-ratio: 4 / 5;
+  padding: 8px 8px 24px;
+  background: #fffaf4;
+  border: 1px solid rgba(142, 49, 81, 0.18);
+  border-radius: 6px;
+  box-shadow: 0 16px 30px rgba(92, 35, 57, 0.28);
+  animation: popFrame 3s ease-in-out infinite;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.frame-one {
+  left: 8%;
+  top: 26%;
+  transform: rotate(-10deg);
+  animation-delay: 0s;
+}
+
+.frame-two {
+  left: 50%;
+  top: 12%;
+  transform: translateX(-50%) rotate(4deg);
+  animation-delay: 0.7s;
+}
+
+.frame-three {
+  right: 8%;
+  top: 28%;
+  transform: rotate(10deg);
+  animation-delay: 1.4s;
+}
+
+.envelope.open .popup-frames {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(18px) scale(0.96);
+}
+
+@keyframes popFrame {
+  0%,
+  100% {
+    margin-top: 0;
+  }
+
+  50% {
+    margin-top: -18px;
+  }
+}
+
 #content {
   position: relative;
   z-index: 3;
@@ -340,5 +406,85 @@ h1 {
 
   .flower {
     opacity: 0.45;
+  }
+
+  .popup-frames {
+    inset: 32px 0 0;
+  }
+
+  .photo-frame {
+    width: clamp(78px, 27vw, 116px);
+    padding: 6px 6px 18px;
+  }
+
+  .frame-one {
+    left: 2%;
+    top: 28%;
+  }
+
+  .frame-two {
+    top: 14%;
+  }
+
+  .frame-three {
+    right: 2%;
+    top: 30%;
+  }
+}
+
+
+
+/* Flashing Images*/
+
+.image-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation: imageFlash 15s infinite;
+}
+
+.bg-one {
+  background-image: url("image4.jpg");
+  animation-delay: 0s;
+}
+
+.bg-two {
+  background-image: url("image5.jpg");
+  animation-delay: 5s;
+}
+
+.bg-three {
+  background-image: url("image6.jpg");
+  animation-delay: 10s;
+}
+
+@keyframes imageFlash {
+  0% {
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 0.35;
+  }
+
+  30% {
+    opacity: 0.35;
+  }
+
+  35% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
